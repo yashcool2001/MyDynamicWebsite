@@ -4,7 +4,54 @@
     <meta charset="utf-8">
     <title>My test page</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <style>
+    html {
+  font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+p, li {
+  font-size: 16px;  
+  line-height: 2;
+  letter-spacing: 1px;
+}
+
+
+html {
+  background-color: #00539F;
+}
+
+body {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #FF9500;
+  padding: 0 20px 20px 20px;
+  border: 5px solid black;
+}
+
+h1 {
+  margin: 0;
+  padding: 20px 0;  
+  color: #00539F;
+  text-shadow: 3px 3px 1px black;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+button
+{
+  color: red;
+  background-color: yellow;
+}
+    </style>
   </head>
   <body>
     <h1>Mozilla is cool</h1>
@@ -25,6 +72,53 @@
     <p>Read the <a href="https://www.mozilla.org/en-US/about/manifesto/">Mozilla Manifesto</a> to learn even more about
      the values and principles that guide the pursuit of our mission.</p>
      <button>Change UserName</button>
-     <script src="scripts/main.js"></script>
+     <script>
+     var myHeading = document.querySelector('h1');
+myHeading.textContent = 'Hello world!';
+function multiply(num1,num2)
+{
+    var num3=num1*num2;
+    return num3;
+}
+/*
+document.querySelector('html').onclick=function(){
+    alert("Stop clicking");
+};
+*/
+
+var myImage=document.querySelector('img');
+myImage.onclick=function(){
+    var mysrc=myImage.getAttribute('src');
+    if(mysrc==='images/firefox-icon.png')
+    {
+        myImage.setAttribute('src','images/firefox2.png');
+    }
+    else
+    {
+        myImage.setAttribute('src','images/firefox-icon.png');
+    }
+}
+
+var myButton=document.querySelector('button');
+var myHeading=document.querySelector('h1');
+
+function setUserName(){
+    var username=prompt('Enter your name');
+    localStorage.setItem('name',username);
+    myHeading.textContent="Mozilla is cool, "+username;
+}
+
+if(!localStorage.getItem('name'))
+setUserName();
+else{
+    var storedName=localStorage.getItem('name');
+    myHeading.textContent="Mozilla is cool, "+storedName;
+}
+
+myButton.onclick=function()
+{
+    setUserName();
+}
+     </script>
   </body>
 </html>
